@@ -1,0 +1,9 @@
+.book-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.book-list li {
+    background-color: bisque;
+}
