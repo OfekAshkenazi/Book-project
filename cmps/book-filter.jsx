@@ -4,8 +4,6 @@ import { bookService } from '../services/books.service.js'
 export function BookFilter({ onSetFilterBy }) {
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
-
-
     useEffect(() => {
         onSetFilterBy(filterBy)
     }, [filterBy])

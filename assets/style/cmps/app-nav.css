@@ -1,5 +1,13 @@
 .app-nav {
     display: flex;
-    padding: 0em 1em;
-    gap: 10px;
+}
+
+
+.app-nav a {
+    display: block;
+    padding: 1em 1em;
+}
+
+.active {
+    text-decoration: 2px underline rgb(35, 210, 38);
 }

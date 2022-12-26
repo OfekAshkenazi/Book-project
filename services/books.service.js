@@ -11,9 +11,9 @@ export const bookService = {
     getDefaultFilter,
     createBook,
     save,
+    getEmptyBook,
+    remove,
 }
-
-
 
 function getDefaultFilter() {
     return { txt: '', minPrice: '' }
@@ -21,6 +21,10 @@ function getDefaultFilter() {
 
 function get(bookId) {
     return storageService.get(BOOKS_KEY, bookId)
+}
+
+function remove(bookId) {
+    return storageService.remove(BOOKS_KEY, bookId)
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -43,7 +47,7 @@ function _createBooks() {
     if (!books || !books.length) {
         books = [
             {
-                id: 'OXeMG8wNskc',
+                id: 'JYOJa2NpSCsssq',
                 title: 'metus hendrerit',
                 subtitle: 'mi est eros convallis auctor arcu dapibus himenaeos',
                 authors: [
@@ -489,22 +493,34 @@ function _createBooks() {
 }
 
 
+function getEmptyBook() {
+    const book = {
+        title: '',
+        subtitle: 'mi est eros convallis auctor arcu dapibus himenaeos',
+        authors: [
+            'Barbara Cartland'
+        ],
+        publishedDate: utilService.getRandomIntInclusive(1930, 2023),
+        description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum suspendisse',
+        pageCount: utilService.getRandomIntInclusive(70, 900),
+        categories: [
+            'Computers',
+            'Hack'
+        ],
+        thumbnail: `http://coding-academy.org/books-photos/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
+        language: 'en',
+        listPrice: {
+            amount: '',
+            currencyCode: 'EUR',
+            isOnSale: false
+        }
 
-function _createBooks2() {
-    let books = storageService.oldLoad(BOOKS_KEY)
-    if (!books || !books.length) {
-        books = []
-        books.push(_createBook())
-        books.push(_createBook())
-        books.push(_createBook())
-        storageService.oldSave(BOOKS_KEY, books)
-        console.log('from server no good')
     }
+    return book
 }
 
 function createBook(name, price) {
     const book = {
-        id: utilService.makeId(),
         title: name,
         subtitle: 'mi est eros convallis auctor arcu dapibus himenaeos',
         authors: [
@@ -530,7 +546,10 @@ function createBook(name, price) {
 }
 
 function save(book) {
-
-    return storageService.post(BOOKS_KEY, book)
-
+    console.log(book)
+    if (book.id) {
+        return storageService.put(BOOKS_KEY, book)
+    } else {
+        return storageService.post(BOOKS_KEY, book)
+    }
 }
