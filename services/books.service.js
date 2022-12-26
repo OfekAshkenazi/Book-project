@@ -60,6 +60,7 @@ function _createBooks() {
                     'Computers',
                     'Hack'
                 ],
+                reviews: [],
                 thumbnail: 'http://coding-academy.org/books-photos/20.jpg',
                 language: 'en',
                 listPrice: {
@@ -69,6 +70,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'JYOJa2NpSCq',
                 title: 'morbi',
                 subtitle: 'lorem euismod dictumst inceptos mi',
@@ -91,6 +93,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: '1y0Oqts35DQ',
                 title: 'at viverra venenatis',
                 subtitle: 'gravida libero facilisis rhoncus urna etiam',
@@ -113,6 +116,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'kSnfIJyikTP',
                 title: 'dictum',
                 subtitle: 'augue eu consectetur class curabitur conubia ligula in ullamcorper',
@@ -135,6 +139,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'f4iuVmbuKCC',
                 title: 'sem himenaeos aptent',
                 subtitle: 'interdum per habitasse luctus purus est',
@@ -157,6 +162,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'U2rfZO6oBZf',
                 title: 'mi ante posuere',
                 subtitle: 'sapien curae consectetur ultrices fringilla blandit ipsum curae faucibus',
@@ -179,6 +185,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'xI0wrXaaAcq',
                 title: 'non',
                 subtitle: 'leo tortor per dapibus mattis ut conubia porttitor ligula viverra',
@@ -201,6 +208,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: '9laHCEdSpFy',
                 title: 'tristique',
                 subtitle: 'consectetur a eu tincidunt condimentum amet nisi',
@@ -223,6 +231,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'nGhVwZvGCGp',
                 title: 'urna ornare gravida',
                 subtitle: 'sem vestibulum semper convallis pharetra tempor himenaeos ut',
@@ -245,6 +254,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'Q8Q9Lsd03BD',
                 title: 'consequat neque volutpat',
                 subtitle: 'vel quis taciti fermentum feugiat ullamcorper curae praesent',
@@ -267,6 +277,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'bd7a76kARao',
                 title: 'risus',
                 subtitle: 'pretium bibendum pharetra curabitur quisque dictumst',
@@ -289,6 +300,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'qKyG0vqeO3e',
                 title: 'interdum etiam vulputate',
                 subtitle: 'velit sapien eget tincidunt nunc tortor',
@@ -311,6 +323,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: '2RvT48ZNInj',
                 title: 'sagittis justo',
                 subtitle: 'etiam primis proin praesent placerat nisi fermentum nisi',
@@ -333,6 +346,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: '5z2s9pDXAYj',
                 title: 'quam ullamcorper himenaeos',
                 subtitle: 'ut placerat eu dapibus sapien sodales laoreet',
@@ -355,6 +369,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'zBZu5cDEWha',
                 title: 'quis',
                 subtitle: 'suscipit turpis etiam turpis libero lobortis',
@@ -377,6 +392,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'aOI7tQuPZ2f',
                 title: 'aliquam aliquet dapibus',
                 subtitle: 'neque eu purus euismod placerat adipiscing odio egestas consequat',
@@ -399,6 +415,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'WBooB82Uvwu',
                 title: 'class',
                 subtitle: 'elit enim ultricies amet imperdiet a molestie class elementum venenatis',
@@ -421,6 +438,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'xm1z5bbZjlS',
                 title: 'vitae',
                 subtitle: 'class habitant at commodo semper ligula a bibendum',
@@ -443,6 +461,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'u3j6QIKLlJb',
                 title: 'rhoncus vivamus',
                 subtitle: 'nullam class risus amet senectus scelerisque etiam curabitur',
@@ -465,6 +484,7 @@ function _createBooks() {
                 }
             },
             {
+                reviews: [],
                 id: 'vxYYYdVlEH3',
                 title: 'donec mi ullamcorper',
                 subtitle: 'varius malesuada augue molestie sollicitudin faucibus mi eu tempus',
@@ -495,6 +515,7 @@ function _createBooks() {
 
 function getEmptyBook() {
     const book = {
+        reviews: [],
         title: '',
         subtitle: 'mi est eros convallis auctor arcu dapibus himenaeos',
         authors: [

@@ -1,6 +1,9 @@
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
+import { LongTxt } from "../cmps/long-txt.jsx"
+
+
 import { bookService } from "../services/books.service.js"
 
 export function BookDetails() {
@@ -53,19 +56,33 @@ export function BookDetails() {
 
     if (!book) return <h2> loading...</h2>
     return <article className="book-deatails">
-        <h2>the book</h2>
-        <h2>Name: {book.title}</h2>
-        <h5>Id: {book.id}</h5>
-        <p className={PriceAmountColor(getRightPrice())}>
-            Price: {getRightPrice()} {book.listPrice.currencyCode}
-            For Sale? {book.listPrice.isOnSale ? 'True' : 'False'}
-        </p>
-        {PageCountToDisplay(book.pageCount)}
-        {PublishedDateToDisplay(book.publishedDate)}
-        <img src={book.thumbnail} alt="" />
-        <div className="btn-details-area">
-        <button onClick={onGoBack}>Go Back</button>
-        <Link to={`/book/edit/${book.id}`}><button>Update me</button></Link>
+        <div className="content">
+
+            <h2>the book</h2>
+            <h2>{book.title}</h2>
+            <h5>Id: {book.id}</h5>
+            <p className={PriceAmountColor(getRightPrice())}>
+                Price: {getRightPrice()} {book.listPrice.currencyCode}
+                For Sale? {book.listPrice.isOnSale ? 'True' : 'False'}
+            </p>
+            {PageCountToDisplay(book.pageCount)}
+            {PublishedDateToDisplay(book.publishedDate)}
+            <LongTxt txt={book.description} length={100} />
+            {(!book.reviews.length) ? <h2>No Reviews</h2> : <h2>And The Reviews</h2>}
+            {book.reviews.length > 0 && book.reviews.map(review => {
+                return <div className="review-card">
+                    <p>{review.fullname}</p>
+                    <p>{review.rating}</p>
+                    <p>{review.readAt}</p>
+
+                </div>
+            })}
+            <img src={book.thumbnail} alt="" />
+            <div className="btn-details-area">
+                <button onClick={onGoBack}>Go Back</button>
+                <Link to={`/book/edit/${book.id}`}><button>Update me</button></Link>
+                <Link to={`/book/${book.id}/review`}><button>Reviews</button></Link>
+            </div>
         </div>
     </article>
 

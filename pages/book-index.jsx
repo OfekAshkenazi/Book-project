@@ -36,7 +36,6 @@ export function BookIndex() {
             .catch((err) => { console.log('erorororor', err) })
     }
 
-    // setUserMsg('home')
     return <section className="books-index">
 
         <BookFilter onSetFilterBy={onSetFilterBy} />

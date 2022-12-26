@@ -12,6 +12,7 @@ import { UserMsg } from './cmps/user-msg.jsx'
 import { AboutIndex } from './cmps/about-index.jsx'
 import { Team } from './cmps/team.jsx'
 import { Vision } from './cmps/vision.jsx'
+import { BookReview } from './cmps/book-review.jsx'
 
 export function App() {
 
@@ -31,6 +32,7 @@ export function App() {
                         <Route element={<Vision />} path="/about/vision" />
                     </Route>
                     <Route element={<BookIndex />} path="/book" />
+                    <Route element={<BookReview />} path="/book/:bookid/review" />
                     <Route element={<BookEdit />} path="/book/edit" />
                     <Route element={<BookEdit />} path="/book/edit/:bookid" />
                     <Route element={<BookDetails />} path="/book/:bookid" />
