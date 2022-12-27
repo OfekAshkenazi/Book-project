@@ -6,3 +6,28 @@
     gap: 5px;
     background-color: rgba(0, 0, 0, 0.425);
 }
+
+.book-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-edit-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form input {
+    width: 250px;
+}
+
+.book-review img {
+   max-height: 370px;
+}

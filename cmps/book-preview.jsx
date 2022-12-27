@@ -2,8 +2,9 @@
 
 export function BookPreview({ book }) {
 
+    if(!book) return <div class="loader">Loading...</div>
 
-    return <article className="book-preview">
+    return <article key={book.id} className="animate__animated animate__backInLeft book-preview">
 
         <h2>{book.title.substring(0, 12)}</h2>
         <h5>Id: {book.id}</h5>
@@ -12,3 +13,4 @@ export function BookPreview({ book }) {
 
     </article>
 }
+

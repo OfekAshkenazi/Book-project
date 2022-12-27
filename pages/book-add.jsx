@@ -10,6 +10,7 @@ import { showSuccessMsg } from '../services/event-bus.service.js';
 export function BookAdd() {
     const [booksFromGoogle, setBooksFromGoogle] = useState([])
     const navigate = useNavigate()
+
     function onAddGoogleBook(bookId) {
         googleBookService.getGoogleBook(bookId)
             .then((book) => {
@@ -28,10 +29,11 @@ export function BookAdd() {
     }
 
     return <section className="book-add">
-        <h2>hello from bookadd</h2>
+        <h2>Search Book On Google</h2>
         <div className="book-add-content">
             <form onSubmit={onSearchGoogleBook}>
-                <input type="text"
+                <input
+                    type="text"
                     name="name"
                 />
                 <button>Search</button>
@@ -48,3 +50,5 @@ export function BookAdd() {
         </div>
     </section>
 }
+
+

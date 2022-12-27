@@ -36,6 +36,8 @@ export function BookIndex() {
             .catch((err) => { console.log('erorororor', err) })
     }
 
+
+    if(!books || !books.length) return <div className="loader">Loading...</div>
     return <section className="books-index">
 
         <BookFilter onSetFilterBy={onSetFilterBy} />

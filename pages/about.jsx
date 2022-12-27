@@ -4,7 +4,7 @@ export function About() {
 
     return <section className="about">
         <h3>We Love Books!</h3>
-        <p>This app was made by ofek ashkenazi in react while study in coding academy</p>
+        <p>This app was made by Ofek Ashkenazi in react while study in coding academy</p>
 
         <nav>
             <Link to="/about">Index</Link> |

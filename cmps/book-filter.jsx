@@ -10,14 +10,13 @@ export function BookFilter({ onSetFilterBy }) {
 
 
     function handleChange({ target }) {
-        console.log(target.value)
         let { value, name: field, type } = target
+        value = type === 'number' ? +value : value
         setFilterBy((prevFilter) => {
             return { ...prevFilter, [field]: value }
         })
 
     }
-
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilterBy(filterBy)
@@ -25,7 +24,7 @@ export function BookFilter({ onSetFilterBy }) {
 
 
     return <section className="book-filter">
-        <h2>Filter my books</h2>
+        <h2 className="animate__animated animate__bounce">Filter my books</h2>
         <div className="book-filter-content">
 
             <form onSubmit={onSubmitFilter}>
@@ -35,7 +34,7 @@ export function BookFilter({ onSetFilterBy }) {
                         name="txt"
                         id="name"
                         onChange={handleChange}
-                        placeholder="Enter name" />
+                        placeholder="Enter name..." />
                 </label>
                 <label>
                     Pages:
@@ -43,15 +42,19 @@ export function BookFilter({ onSetFilterBy }) {
                         name="pageCount"
                         id="pageCount"
                         onChange={handleChange}
-                        placeholder="Enter max page Count" />
+                        placeholder="Enter max page Count..." />
                 </label>
                 <label>
                     Price:
-                    <input type="number" name="minPrice" id="minPrice" placeholder="Enter Min Price" onChange={handleChange} />
+                    <input type="number" name="minPrice" id="minPrice" placeholder="Enter Min Price..." onChange={handleChange} />
                 </label>
                 <label>
                     Price:
-                    <input type="number" name="maxPrice" id="maxPrice" placeholder="Enter Max Price" onChange={handleChange} />
+                    <input type="number" name="maxPrice" id="maxPrice" placeholder="Enter Max Price..." onChange={handleChange} />
+                </label>
+                <label>
+                    Date:
+                    <input type="number" name="publishedDate" id="publishedDate" placeholder="Enter Min Published Dated..." onChange={handleChange} />
                 </label>
                 <button>Filter books</button>
             </form>

@@ -7,7 +7,7 @@ import { bookService } from "../services/books.service.js"
 
 export function BookReview() {
     const [bookToReview, setBookToReview] = useState({})
-    const [review, setReview] = useState({ fullname: '', rating: '', readAt: new Date() })
+    const [review, setReview] = useState({ fullname: '', rating: '', readAt: '' })
 
     const { bookid } = useParams()
     const navigate = useNavigate()
@@ -45,13 +45,13 @@ export function BookReview() {
     function onGoBack() {
         navigate(`/book/${bookToReview.id}`)
     }
-
+    if (!bookToReview.thumbnail) return <div className="loader">Loading...</div>
     return <section className="book-review">
-        <h2>Hello Thank you very much for your support</h2>
+        <h2>Thank you so much for support</h2>
 
         <img src={bookToReview.thumbnail} alt="" />
 
-        <form onSubmit={onSaveReview}>
+        <form className="review-form" onSubmit={onSaveReview}>
             <label htmlFor="fullname" >FullName : </label>
             <input type="text"
                 name="fullname"
@@ -64,6 +64,13 @@ export function BookReview() {
                 name="rating"
                 id="rating"
                 placeholder="Enter Rating..."
+                onChange={handleChange}
+            />
+            <label htmlFor="readAt">Date: </label>
+            <input type="date"
+                name="readAt"
+                id="readAt"
+                placeholder="Enter Date..."
                 onChange={handleChange}
             />
 

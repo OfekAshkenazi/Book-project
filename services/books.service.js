@@ -38,7 +38,7 @@ function getPreviousBookId(bookid) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minPrice: '', maxPrice: '', pageCount: '' }
+    return { txt: '', minPrice: '', maxPrice: '', pageCount: '', publishedDate: ''}
 }
 
 function get(bookId) {
@@ -64,6 +64,9 @@ function query(filterBy = getDefaultFilter()) {
             }
             if (filterBy.pageCount) {
                 books = books.filter(book => book.pageCount <= filterBy.pageCount)
+            }
+            if (filterBy.publishedDate) {
+                books = books.filter(book => book.publishedDate >= filterBy.publishedDate)
             }
             return books
         })
@@ -544,20 +547,18 @@ function getEmptyBook() {
         reviews: [],
         title: '',
         subtitle: 'mi est eros convallis auctor arcu dapibus himenaeos',
-        authors: [
-            'Barbara Cartland'
-        ],
-        publishedDate: utilService.getRandomIntInclusive(1930, 2023),
+        authors: '',
+        publishedDate: '',
         description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum suspendisse',
-        pageCount: utilService.getRandomIntInclusive(70, 900),
+        pageCount: '',
         categories: [
             'Computers',
             'Hack'
         ],
         thumbnail: `http://coding-academy.org/books-photos/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
-        language: 'en',
+        language: '',
         price: '',
-        currencyCode: 'EUR',
+        currencyCode: '',
         isOnSale: false
     }
     return book
@@ -572,7 +573,7 @@ function createBook(name, price) {
         ],
         publishedDate: utilService.getRandomIntInclusive(1930, 2023),
         description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum suspendisse',
-        pageCount: utilService.getRandomIntInclusive(70, 900),
+        pageCount: '',
         categories: [
             'Computers',
             'Hack'

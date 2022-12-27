@@ -24,13 +24,14 @@ export function BookDetails() {
                 console.log('cant find book deatails', err)
                 onGoBack()
             })
-        bookService.getNextBookId(bookid).then(setNextBookId);
+        bookService.getNextBookId(bookid).then(setNextBookId)
         bookService.getPreviousBookId(bookid).then(setPreviousBookId)
 
     }
 
     function onGoBack() {
         navigate('/book')
+
     }
 
     function PageCountToDisplay(pageCount) {
@@ -50,18 +51,20 @@ export function BookDetails() {
     }
 
 
-    if (!book) return <h2> loading...</h2>
-    return <article className="book-deatails">
+    if(!book) return <div className="loader">Loading...</div>
+    return <article key={book.id} className="book-deatails">
         <div className="content">
             <h2>{book.title}</h2>
-            <h5>Id: {book.id}</h5>
             <img src={book.thumbnail} alt="" />
             <p className={PriceAmountColor(book.price)}>
                 Price: {book.price} {book.currencyCode}
                 For Sale? {book.isOnSale ? 'True' : 'False'}
             </p>
-            {PageCountToDisplay(book.pageCount)}
-            {PublishedDateToDisplay(book.publishedDate)}
+            <div className="info-area flex">
+                {PageCountToDisplay(book.pageCount)}
+                {PublishedDateToDisplay(book.publishedDate)}
+                {book.publishedDate}
+            </div>
             <LongTxt txt={book.description} length={100} />
             {(!book.reviews.length) ? <h2>No Reviews</h2> : <h2>And The Reviews</h2>}
             {book.reviews.length > 0 && book.reviews.map(review => {
@@ -72,7 +75,7 @@ export function BookDetails() {
 
                 </div>
             })}
-            <div className="btn-details-area">
+            <div className="animate__animated animate__fadeInBottomLeft btn-details-area">
                 <button onClick={onGoBack}>Go Back</button>
                 <Link to={`/book/${PreviousBookId}`}><button>Previous book</button></Link>
                 <Link to={`/book/${nextBookId}`}><button>Next book</button></Link>
