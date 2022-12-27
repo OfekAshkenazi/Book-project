@@ -10,9 +10,9 @@
     flex-direction: column;
     background-color: rgba(152, 121, 84, 0.526);
     border: 1.5px solid whitesmoke;
-    /* padding: 1em; */
+    padding: 1em;
     max-width: 650px;
-   
+
 }
 
 .content h2 {
