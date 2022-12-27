@@ -51,7 +51,7 @@ export function BookDetails() {
     }
 
 
-    if(!book) return <div className="loader">Loading...</div>
+    if (!book) return <div className="loader">Loading...</div>
     return <article key={book.id} className="book-deatails">
         <div className="content">
             <h2>{book.title}</h2>
@@ -65,7 +65,7 @@ export function BookDetails() {
                 {PublishedDateToDisplay(book.publishedDate)}
                 {book.publishedDate}
             </div>
-            <LongTxt txt={book.description} length={100} />
+            {book.description && <LongTxt txt={book.description} length={100} />}
             {(!book.reviews.length) ? <h2>No Reviews</h2> : <h2>And The Reviews</h2>}
             {book.reviews.length > 0 && book.reviews.map(review => {
                 return <div className="review-card">

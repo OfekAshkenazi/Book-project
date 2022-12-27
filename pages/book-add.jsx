@@ -21,6 +21,15 @@ export function BookAdd() {
             })
     }
 
+
+    function debounce(func, timeout = 300) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+    }
+
     function onSearchGoogleBook(ev) {
         ev.preventDefault()
         let name = ev.target['name'].value
@@ -35,6 +44,7 @@ export function BookAdd() {
                 <input
                     type="text"
                     name="name"
+                    onChange={debounce(onSearchGoogleBook, 2000)}
                 />
                 <button>Search</button>
             </form>
