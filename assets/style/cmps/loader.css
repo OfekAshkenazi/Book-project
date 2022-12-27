@@ -11,11 +11,11 @@
 }
 
 .loader {
-    color: #3f4ba5;
+    color: #f4ac5b;
     font-size: 16px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 30%;
+    left: 45%;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);

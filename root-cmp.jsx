@@ -25,7 +25,6 @@ export function App() {
             <main className="">
                 <Routes>
                     <Route element={<Home />} path="/" />
-
                     <Route element={<About />} path="/about">
                         <Route element={<AboutIndex />} path="/about" />
                         <Route element={<Team />} path="/about/team" />

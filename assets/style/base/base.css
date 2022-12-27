@@ -51,3 +51,7 @@ object {
 body {
   background-color: rgba(255, 228, 196, 0.782);
 }
+
+.app {
+  min-height: 100vh;
+}
