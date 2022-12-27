@@ -31,7 +31,10 @@ export function BookEdit() {
 
     function onSaveBook(ev) {
         ev.preventDefault()
-        bookService.save(bookToEdit).then(navigate('/book'))
+        bookService.save(bookToEdit)
+            .then((setBookToEdit) => {
+                navigate('/book')
+            })
 
     }
 
@@ -45,7 +48,7 @@ export function BookEdit() {
                 id="name"
                 placeholder="Enter Name..."
                 onChange={handleChange}
-            // value={bookToEdit.title}
+                value={bookToEdit.title}
             />
             <label htmlFor="price">Price : </label>
             <input type="number"
@@ -53,11 +56,11 @@ export function BookEdit() {
                 id="price"
                 placeholder="Enter Price..."
                 onChange={handleChange}
-            // value={bookToEdit.listPrice.amount}
+                value={bookToEdit.price}
             />
 
             <div className="btn-edit-area">
-                <button>Add</button>
+                {!bookid ? <button>Add</button> : <button>Save</button>}
                 <Link to="/book"><button>Cancel</button></Link>
             </div>
         </form>

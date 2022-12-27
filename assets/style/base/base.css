@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  font-family: poppins-extra-bold !important;
+  font-weight: bold;
 }
 
 html {

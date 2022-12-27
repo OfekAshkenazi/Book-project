@@ -1,0 +1,11 @@
+.btn-index-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(min-width:550px) {
+    .btn-index-area {
+        justify-content: flex-start;
+    }
+       
+}

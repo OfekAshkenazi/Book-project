@@ -8,6 +8,8 @@ import { bookService } from "../services/books.service.js"
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
+    const [nextBookId, setNextBookId] = useState(null)
+    const [PreviousBookId, setPreviousBookId] = useState(null)
     const { bookid } = useParams()
     const navigate = useNavigate()
 
@@ -22,6 +24,9 @@ export function BookDetails() {
                 console.log('cant find book deatails', err)
                 onGoBack()
             })
+        bookService.getNextBookId(bookid).then(setNextBookId);
+        bookService.getPreviousBookId(bookid).then(setPreviousBookId)
+
     }
 
     function onGoBack() {
@@ -44,26 +49,16 @@ export function BookDetails() {
         if (price > 150) return 'red'
     }
 
-    function getRightPrice() {
-        let price
-        if (!book.listPrice.amount) {
-            price = book.price
-        } else {
-            price = book.listPrice.amount
-        }
-        return price
-    }
 
     if (!book) return <h2> loading...</h2>
     return <article className="book-deatails">
         <div className="content">
-
-            <h2>the book</h2>
             <h2>{book.title}</h2>
             <h5>Id: {book.id}</h5>
-            <p className={PriceAmountColor(getRightPrice())}>
-                Price: {getRightPrice()} {book.listPrice.currencyCode}
-                For Sale? {book.listPrice.isOnSale ? 'True' : 'False'}
+            <img src={book.thumbnail} alt="" />
+            <p className={PriceAmountColor(book.price)}>
+                Price: {book.price} {book.currencyCode}
+                For Sale? {book.isOnSale ? 'True' : 'False'}
             </p>
             {PageCountToDisplay(book.pageCount)}
             {PublishedDateToDisplay(book.publishedDate)}
@@ -72,16 +67,17 @@ export function BookDetails() {
             {book.reviews.length > 0 && book.reviews.map(review => {
                 return <div className="review-card">
                     <p>{review.fullname}</p>
-                    <p>{review.rating}</p>
+                    <p>{'⭐'.repeat(review.rating).substring(0, 5)}</p>
                     <p>{review.readAt}</p>
 
                 </div>
             })}
-            <img src={book.thumbnail} alt="" />
             <div className="btn-details-area">
                 <button onClick={onGoBack}>Go Back</button>
+                <Link to={`/book/${PreviousBookId}`}><button>Previous book</button></Link>
+                <Link to={`/book/${nextBookId}`}><button>Next book</button></Link>
                 <Link to={`/book/edit/${book.id}`}><button>Update me</button></Link>
-                <Link to={`/book/${book.id}/review`}><button>Reviews</button></Link>
+                <Link to={`/book/${book.id}/review`}><button>Add Reviews</button></Link>
             </div>
         </div>
     </article>

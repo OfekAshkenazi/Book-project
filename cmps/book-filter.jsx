@@ -26,20 +26,35 @@ export function BookFilter({ onSetFilterBy }) {
 
     return <section className="book-filter">
         <h2>Filter my books</h2>
-        <form onSubmit={onSubmitFilter}>
-            <label>
-                Name:
-                <input type="text"
-                    name="txt"
-                    id="name"
-                    onChange={handleChange}
-                    placeholder="Enter name" />
-            </label>
-            <label>
-                Price:
-                <input type="number" name="minPrice" id="minPrice" onChange={handleChange} />
+        <div className="book-filter-content">
+
+            <form onSubmit={onSubmitFilter}>
+                <label>
+                    Name:
+                    <input type="text"
+                        name="txt"
+                        id="name"
+                        onChange={handleChange}
+                        placeholder="Enter name" />
+                </label>
+                <label>
+                    Pages:
+                    <input type="text"
+                        name="pageCount"
+                        id="pageCount"
+                        onChange={handleChange}
+                        placeholder="Enter max page Count" />
+                </label>
+                <label>
+                    Price:
+                    <input type="number" name="minPrice" id="minPrice" placeholder="Enter Min Price" onChange={handleChange} />
+                </label>
+                <label>
+                    Price:
+                    <input type="number" name="maxPrice" id="maxPrice" placeholder="Enter Max Price" onChange={handleChange} />
+                </label>
                 <button>Filter books</button>
-            </label>
-        </form>
+            </form>
+        </div>
     </section>
 }

@@ -15,7 +15,7 @@ export function BookIndex() {
 
     useEffect(() => {
         loadBooks()
-    }, [filterBy])
+    }, [books, filterBy])
 
     function loadBooks() {
         bookService.query(filterBy).then(setBooks)
@@ -31,7 +31,7 @@ export function BookIndex() {
                 const updatedBooks = books.filter(book => book.id !== bookId)
                 setBooks(updatedBooks)
                 showSuccessMsg('Book Removed')
-                
+
             })
             .catch((err) => { console.log('erorororor', err) })
     }
@@ -39,8 +39,10 @@ export function BookIndex() {
     return <section className="books-index">
 
         <BookFilter onSetFilterBy={onSetFilterBy} />
-        <Link to="/book/edit"> <button>Add Book</button></Link>
-
+        <div className="btn-index-area">
+            <Link to="/book/edit"> <button>Add Book</button></Link>
+            <Link to="/book/bookFromGoogle"> <button>Add Book From Google</button></Link>
+        </div>
         <BookList books={books} onRemoveBook={onRemoveBook} />
 
     </section>

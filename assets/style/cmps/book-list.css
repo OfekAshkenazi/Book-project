@@ -1,15 +1,33 @@
-.book-list{
+.book-list {
     margin-top: 10px;
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .book-list li {
     background-color: rgba(152, 121, 84, 0.526);
     border: 1.5px solid whitesmoke;
+    border-radius: 5px;
+    padding: 0.3em;
+    max-width: 180px;
+    height: 340px;
+}
+
+
+.book-list li img {
+   width: 50%;
+}
+
+@media (min-width:800px) {
+    .book-list li {
+        max-width: 240px;
+    }
+
 }
 
 .book-list li:hover {
@@ -21,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
 .btn-book-list-area {

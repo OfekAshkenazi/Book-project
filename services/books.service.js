@@ -13,10 +13,32 @@ export const bookService = {
     save,
     getEmptyBook,
     remove,
+    getNextBookId,
+    getPreviousBookId,
+    saveGoogleBook
+}
+
+
+function getNextBookId(bookid) {
+    return storageService.query(BOOKS_KEY)
+        .then(books => {
+            let idx = books.findIndex(book => book.id === bookid)
+            if (idx === books.length - 1) idx = -1
+            return books[idx + 1].id
+        })
+}
+
+function getPreviousBookId(bookid) {
+    return storageService.query(BOOKS_KEY)
+        .then(books => {
+            let idx = books.findIndex(book => book.id === bookid)
+            if (idx === 0) idx = books.length - 1
+            return books[idx - 1].id
+        })
 }
 
 function getDefaultFilter() {
-    return { txt: '', minPrice: '' }
+    return { txt: '', minPrice: '', maxPrice: '', pageCount: '' }
 }
 
 function get(bookId) {
@@ -35,7 +57,13 @@ function query(filterBy = getDefaultFilter()) {
                 books = books.filter(book => regex.test(book.title))
             }
             if (filterBy.minPrice) {
-                books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
+                books = books.filter(book => book.price >= filterBy.minPrice)
+            }
+            if (filterBy.maxPrice) {
+                books = books.filter(book => book.price <= filterBy.maxPrice)
+            }
+            if (filterBy.pageCount) {
+                books = books.filter(book => book.pageCount <= filterBy.pageCount)
             }
             return books
         })
@@ -63,11 +91,10 @@ function _createBooks() {
                 reviews: [],
                 thumbnail: 'http://coding-academy.org/books-photos/20.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 109,
-                    currencyCode: 'EUR',
-                    isOnSale: false
-                }
+                price: 109,
+                currencyCode: 'EUR',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -86,11 +113,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/14.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 44,
-                    currencyCode: 'EUR',
-                    isOnSale: true
-                }
+
+                price: 44,
+                currencyCode: 'EUR',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -109,11 +136,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 108,
-                    currencyCode: 'ILS',
-                    isOnSale: false
-                }
+
+                price: 108,
+                currencyCode: 'ILS',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -132,11 +159,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/16.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 30,
-                    currencyCode: 'EUR',
-                    isOnSale: true
-                }
+
+                price: 30,
+                currencyCode: 'EUR',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -155,11 +182,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/12.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 19,
-                    currencyCode: 'USD',
-                    isOnSale: false
-                }
+
+                price: 19,
+                currencyCode: 'USD',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -178,11 +205,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/1.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 91,
-                    currencyCode: 'USD',
-                    isOnSale: true
-                }
+
+                price: 91,
+                currencyCode: 'USD',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -201,11 +228,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/14.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 90,
-                    currencyCode: 'USD',
-                    isOnSale: false
-                }
+
+                price: 90,
+                currencyCode: 'USD',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -224,11 +251,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/11.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 176,
-                    currencyCode: 'EUR',
-                    isOnSale: false
-                }
+
+                price: 176,
+                currencyCode: 'EUR',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -247,11 +274,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/10.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 116,
-                    currencyCode: 'USD',
-                    isOnSale: true
-                }
+
+                price: 116,
+                currencyCode: 'USD',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -270,11 +297,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/5.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 145,
-                    currencyCode: 'EUR',
-                    isOnSale: false
-                }
+
+                price: 145,
+                currencyCode: 'EUR',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -293,11 +320,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/16.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 157,
-                    currencyCode: 'ILS',
-                    isOnSale: true
-                }
+
+                price: 157,
+                currencyCode: 'ILS',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -316,11 +343,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/17.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 57,
-                    currencyCode: 'USD',
-                    isOnSale: true
-                }
+
+                price: 57,
+                currencyCode: 'USD',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -339,11 +366,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/8.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 167,
-                    currencyCode: 'ILS',
-                    isOnSale: false
-                }
+
+                price: 167,
+                currencyCode: 'ILS',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -362,11 +389,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/3.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 150,
-                    currencyCode: 'USD',
-                    isOnSale: true
-                }
+
+                price: 150,
+                currencyCode: 'USD',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -385,11 +412,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/6.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 58,
-                    currencyCode: 'ILS',
-                    isOnSale: true
-                }
+
+                price: 58,
+                currencyCode: 'ILS',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -408,11 +435,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/7.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 78,
-                    currencyCode: 'USD',
-                    isOnSale: false
-                }
+
+                price: 78,
+                currencyCode: 'USD',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -431,11 +458,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/10.jpg',
                 language: 'en',
-                listPrice: {
-                    amount: 118,
-                    currencyCode: 'ILS',
-                    isOnSale: false
-                }
+
+                price: 118,
+                currencyCode: 'ILS',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -454,11 +481,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/12.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 60,
-                    currencyCode: 'EUR',
-                    isOnSale: false
-                }
+
+                price: 60,
+                currencyCode: 'EUR',
+                isOnSale: false
+
             },
             {
                 reviews: [],
@@ -477,11 +504,11 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/20.jpg',
                 language: 'he',
-                listPrice: {
-                    amount: 110,
-                    currencyCode: 'USD',
-                    isOnSale: true
-                }
+
+                price: 110,
+                currencyCode: 'USD',
+                isOnSale: true
+
             },
             {
                 reviews: [],
@@ -500,18 +527,17 @@ function _createBooks() {
                 ],
                 thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
                 language: 'sp',
-                listPrice: {
-                    amount: 186,
-                    currencyCode: 'ILS',
-                    isOnSale: true
-                }
+
+                price: 186,
+                currencyCode: 'ILS',
+                isOnSale: true
+
             }
         ]
         storageService.oldSave(BOOKS_KEY, books)
         console.log('from server no good')
     }
 }
-
 
 function getEmptyBook() {
     const book = {
@@ -530,12 +556,9 @@ function getEmptyBook() {
         ],
         thumbnail: `http://coding-academy.org/books-photos/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
         language: 'en',
-        listPrice: {
-            amount: '',
-            currencyCode: 'EUR',
-            isOnSale: false
-        }
-
+        price: '',
+        currencyCode: 'EUR',
+        isOnSale: false
     }
     return book
 }
@@ -556,18 +579,24 @@ function createBook(name, price) {
         ],
         thumbnail: `http://coding-academy.org/books-photos/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
         language: 'en',
-        listPrice: {
-            amount: price,
-            currencyCode: 'EUR',
-            isOnSale: false
-        }
+        price,
+        currencyCode: 'EUR',
+        isOnSale: false
+
 
     }
     return book
 }
 
-function save(book) {
+function saveGoogleBook(book) {
     console.log(book)
+
+    return storageService.post(BOOKS_KEY, book)
+
+}
+
+
+function save(book) {
     if (book.id) {
         return storageService.put(BOOKS_KEY, book)
     } else {

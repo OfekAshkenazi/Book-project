@@ -2,11 +2,8 @@ const { useState, useEffect } = React
 const { useNavigate, useParams, Link } = ReactRouterDOM
 
 
-
-
 import { showSuccessMsg } from '../services/event-bus.service.js';
 import { bookService } from "../services/books.service.js"
-
 
 export function BookReview() {
     const [bookToReview, setBookToReview] = useState({})
@@ -14,7 +11,6 @@ export function BookReview() {
 
     const { bookid } = useParams()
     const navigate = useNavigate()
-    // { fullname: '', rating: '', readAt: '' }
 
     useEffect(() => {
         if (!bookid) return
@@ -34,7 +30,6 @@ export function BookReview() {
     }
 
     function onSaveReview(ev) {
-        console.log('work>')
         ev.preventDefault()
         const reviews = bookToReview.reviews
         reviews.push(review)
@@ -47,11 +42,9 @@ export function BookReview() {
             .catch((err) => console.log(err))
     }
 
-
     function onGoBack() {
         navigate(`/book/${bookToReview.id}`)
     }
-
 
     return <section className="book-review">
         <h2>Hello Thank you very much for your support</h2>
@@ -75,7 +68,7 @@ export function BookReview() {
             />
 
             <div className="btn-edit-area">
-                <button>Add</button>
+                <button>Save</button>
                 <Link to={`/book/${bookToReview.id}`}><button>Go Back</button></Link>
             </div>
         </form>

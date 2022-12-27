@@ -1,4 +1,4 @@
-const { Outlet, Link } = ReactRouterDOM
+const { Outlet, NavLink, Link } = ReactRouterDOM
 
 export function About() {
 
@@ -8,8 +8,8 @@ export function About() {
 
         <nav>
             <Link to="/about">Index</Link> |
-            <Link to="/about/team">Team</Link> |
-            <Link to="/about/vision">Vision</Link>
+            <NavLink to="/about/team">Team</NavLink> |
+            <NavLink to="/about/vision">Vision</NavLink>
         </nav>
         <div className="nested-route">
             <Outlet />

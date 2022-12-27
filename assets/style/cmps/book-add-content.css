@@ -1,0 +1,21 @@
+.book-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.book-add-content {
+    background-color: rgba(128, 128, 128, 0.577);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid grey;
+    max-width: 380px;
+}
+
+.book-add-content li {
+    display: flex;
+    justify-content: space-between;
+}
